@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Panel inteligente para automatizar pedidos de Fresas con Crema en Messenger y WhatsApp.">
+  <title>Fresita Bot | Centro de pedidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>.brand{justify-content:center}.brand-logo{width:100px;height:100px;flex:none;object-fit:contain}</style>
+  <style>
+    .modal-backdrop{position:fixed;inset:0;background:#27232966;display:grid;place-items:center;padding:20px;z-index:10}.modal-backdrop[hidden]{display:none}.order-modal{background:#fff;border-radius:12px;width:min(100%,480px);padding:26px;box-shadow:0 24px 70px #27232940}.modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}.order-modal h2{font:700 22px 'Syne',sans-serif;margin:0}.modal-close{background:#f7f3f1;border-radius:50%;width:30px;height:30px;font-size:22px;color:#756d70}.order-modal label{display:grid;gap:7px;font-size:11px;font-weight:700;color:#6c6468;margin-bottom:15px}.order-modal input,.order-modal select{border:1px solid #e5dfdc;border-radius:7px;padding:11px 12px;font:inherit;color:var(--ink);background:#fff}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:7px}.cancel-button{background:#f7f3f1;color:#71696d;border-radius:7px;padding:10px 15px}.modal-actions .primary-button{padding:10px 15px}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand"><img class="brand-logo" src="LOGO/logo.jpg" alt="Logotipo de Fresas con Crema" width="100" height="100"></div>
+      <div class="workspace-switcher"><span class="avatar avatar-pink">FC</span><span><strong>Fresas con Crema</strong><small>Espacio de trabajo</small></span><span class="chevron">⌄</span></div>
+      <nav class="nav-list">
+        <a class="nav-item active" href="#resumen"><span class="nav-icon">◈</span>Resumen</a>
+        <a class="nav-item" href="#conversaciones"><span class="nav-icon">◌</span>Conversaciones<span class="nav-count">12</span></a>
+        <a class="nav-item" href="#pedidos"><span class="nav-icon">▤</span>Pedidos<span class="nav-count soft">8</span></a>
+        <a class="nav-item" href="#catalogo"><span class="nav-icon">✦</span>Catálogo</a>
+        <a class="nav-item" href="#automatizaciones"><span class="nav-icon">⌁</span>Automatizaciones</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="channel-card"><div class="channel-heading"><span>Canales conectados</span><span class="live-dot"></span></div><div class="channel-row"><span class="channel-logo whatsapp">◔</span><span>WhatsApp Business</span><strong>Activo</strong></div><div class="channel-row"><span class="channel-logo messenger">●</span><span>Messenger</span><strong>Activo</strong></div></div>
+        <a class="nav-item" href="#configuracion"><span class="nav-icon">⚙</span>Configuración</a>
+        <div class="user-profile"><span class="avatar avatar-yellow">KI</span><span><strong>Kiara</strong><small>Administradora</small></span><span class="more">•••</span></div>
+      </div>
+    </aside>
+    <main class="main-content" id="resumen">
+      <header class="topbar"><div class="breadcrumb"><span>Centro de pedidos</span><b>/</b><strong>Resumen</strong></div><div class="top-actions"><button class="icon-button" aria-label="Buscar">⌕</button><button class="icon-button notification" aria-label="Notificaciones">♧<i></i></button><button class="help-button">?</button></div></header>
+      <div class="page-content">
+        <section class="welcome-row"><div><p class="eyebrow" id="currentDate"></p><h1 id="greeting">Hola, Kiara <span>✦</span></h1><p class="subtitle">Así se mueve tu negocio hoy.</p></div><button class="primary-button" id="newOrderBtn"><span>＋</span> Nuevo pedido</button></section>
+        <section class="metrics-grid" aria-label="Resumen del día"><article class="metric-card highlight"><div class="metric-top"><span>Pedidos de hoy</span><span class="metric-icon">▤</span></div><div class="metric-value">24</div><div class="metric-foot"><span class="trend up">↑ 18.2%</span><span>vs. ayer</span></div></article><article class="metric-card"><div class="metric-top"><span>Ventas del día</span><span class="metric-icon green">$</span></div><div class="metric-value">$184.50</div><div class="metric-foot"><span class="trend up">↑ 12.4%</span><span>vs. ayer</span></div></article><article class="metric-card"><div class="metric-top"><span>Tiempo de respuesta</span><span class="metric-icon blue">◷</span></div><div class="metric-value">1m 42s</div><div class="metric-foot"><span class="trend up">↓ 24.8%</span><span>más rápido</span></div></article><article class="metric-card"><div class="metric-top"><span>Satisfacción</span><span class="metric-icon yellow">♡</span></div><div class="metric-value">98<span class="unit">%</span></div><div class="metric-foot"><span class="stars">★★★★★</span><span>de clientes felices</span></div></article></section>
+        <div class="dashboard-grid">
+          <section class="panel orders-panel" id="pedidos"><div class="panel-header"><div><h2>Pedidos recientes</h2><p>Los últimos pedidos recibidos</p></div><button class="text-button" data-toast="Lista de pedidos actualizada">Ver todos <span>→</span></button></div><div class="table-wrap"><table><thead><tr><th>CLIENTE</th><th>DETALLE</th><th>CANAL</th><th>ESTADO</th><th>TOTAL</th><th></th></tr></thead><tbody><tr><td><div class="customer"><span class="avatar avatar-lilac">LM</span><span><strong>Laura Méndez</strong><small>Hace 2 min</small></span></div></td><td>2x Fresas Clásicas</td><td><span class="channel-tag whatsapp">◔ WhatsApp</span></td><td><span class="status preparing">En preparación</span></td><td><strong>$18.00</strong></td><td><button class="row-more" aria-label="Más opciones">•••</button></td></tr><tr><td><div class="customer"><span class="avatar avatar-mint">CR</span><span><strong>Carlos Ramírez</strong><small>Hace 8 min</small></span></div></td><td>1x Especial + topping</td><td><span class="channel-tag messenger">● Messenger</span></td><td><span class="status new">Nuevo</span></td><td><strong>$12.50</strong></td><td><button class="row-more" aria-label="Más opciones">•••</button></td></tr><tr><td><div class="customer"><span class="avatar avatar-peach">SP</span><span><strong>Sofía Paredes</strong><small>Hace 16 min</small></span></div></td><td>3x Fresas Clásicas</td><td><span class="channel-tag whatsapp">◔ WhatsApp</span></td><td><span class="status ready">Listo para entregar</span></td><td><strong>$27.00</strong></td><td><button class="row-more" aria-label="Más opciones">•••</button></td></tr><tr><td><div class="customer"><span class="avatar avatar-blue">JP</span><span><strong>Juan Pablo</strong><small>Hace 24 min</small></span></div></td><td>1x Mini Fresas</td><td><span class="channel-tag messenger">● Messenger</span></td><td><span class="status delivered">Entregado</span></td><td><strong>$8.00</strong></td><td><button class="row-more" aria-label="Más opciones">•••</button></td></tr></tbody></table></div></section>
+          <section class="panel bot-panel" id="automatizaciones"><div class="panel-header"><div><h2>Fresita Bot</h2><p>Rendimiento de automatización</p></div><span class="active-label"><i></i> Activo</span></div><div class="bot-score"><div class="score-ring"><span>92<span>%</span></span></div><div><strong>Conversaciones resueltas</strong><p>El bot atiende a tus clientes<br>mientras tú haces lo importante.</p></div></div><div class="bot-stats"><div><strong>156</strong><span>conversaciones</span></div><div><strong>143</strong><span>resueltas por bot</span></div><div><strong>13</strong><span>requieren atención</span></div></div><button class="outline-button" id="botSettings">Administrar automatizaciones <span>→</span></button></section>
+        </div>
+        <section class="conversation-strip" id="conversaciones"><div class="section-heading"><div><h2>Conversaciones que requieren atención</h2><p>Tu equipo puede tomar el control cuando sea necesario.</p></div><button class="text-button" data-toast="Bandeja de conversaciones actualizada">Abrir bandeja <span>→</span></button></div><div class="conversation-list"><article class="conversation-item"><span class="avatar avatar-orange">MG</span><div class="conversation-copy"><div><strong>María González</strong><span class="time">hace 3 min</span></div><p>¿Puedo pedirlo sin azúcar y con extra de...</p></div><span class="unread"></span></article><article class="conversation-item"><span class="avatar avatar-lilac">RT</span><div class="conversation-copy"><div><strong>Ricardo Torres</strong><span class="time">hace 11 min</span></div><p>Me gustaría saber si hacen entregas a...</p></div><span class="unread"></span></article><article class="conversation-item"><span class="avatar avatar-mint">DV</span><div class="conversation-copy"><div><strong>Daniela Vela</strong><span class="time">hace 18 min</span></div><p>Mi pedido llegó perfecto, ¡muchas gracias!</p></div></article></div></section>
+      </div>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="orderModal" hidden>
+    <section class="order-modal" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+      <div class="modal-header"><div><p class="eyebrow">REGISTRO MANUAL</p><h2 id="orderModalTitle">Nuevo pedido</h2></div><button class="modal-close" id="closeOrderModal" type="button" aria-label="Cerrar">×</button></div>
+      <form id="orderForm">
+        <label>Nombre del cliente<input name="customer" type="text" placeholder="Ej. Ana Torres" required></label>
+        <div class="form-row"><label>Producto<select name="product"><option value="Fresas Clásicas">Fresas Clásicas</option><option value="Especial + topping">Especial + topping</option><option value="Mini Fresas">Mini Fresas</option><option value="Helado de fresa">Helado de fresa</option><option value="Copa de helado de fresa">Copa de helado de fresa</option><option value="Sundae de fresa y chocolate">Sundae de fresa y chocolate</option><option value="Malteada de fresa">Malteada de fresa</option></select></label><label>Cantidad<input name="quantity" type="number" min="1" value="1" required></label></div>
+        <div class="form-row"><label>Canal<select name="channel"><option value="whatsapp">WhatsApp</option><option value="messenger">Messenger</option></select></label><label>Total (Bs.)<input name="total" type="number" min="0.01" step="0.01" placeholder="9.00" required></label></div>
+        <div class="modal-actions"><button class="cancel-button" id="cancelOrder" type="button">Cancelar</button><button class="primary-button" type="submit">Registrar pedido</button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
